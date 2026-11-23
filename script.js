@@ -15,18 +15,30 @@ function paintCover() {
   canvas.height = Math.round(bounds.height * pixelRatio);
   context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
   context.globalCompositeOperation = 'source-over';
-  context.fillStyle = '#dfb6bc';
-  context.fillRect(0, 0, bounds.width, bounds.height);
-  context.strokeStyle = 'rgba(255, 248, 244, 0.42)';
-  context.lineWidth = 1.5;
-  context.strokeRect(21, 21, bounds.width - 42, bounds.height - 42);
-  context.fillStyle = '#724954';
+  context.clearRect(0, 0, bounds.width, bounds.height);
+  const centerX = bounds.width / 2;
+  const centerY = bounds.height / 2;
+  const radius = Math.min(bounds.width, bounds.height) / 2;
+  const icing = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+  icing.addColorStop(0, '#fff9ec');
+  icing.addColorStop(.82, '#f5e9d9');
+  icing.addColorStop(1, '#e7c9b8');
+  context.fillStyle = icing;
+  context.beginPath();
+  context.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  context.fill();
+  context.strokeStyle = 'rgba(187, 149, 99, 0.55)';
+  context.lineWidth = 1.3;
+  context.beginPath();
+  context.arc(centerX, centerY, radius - 11, 0, Math.PI * 2);
+  context.stroke();
+  context.fillStyle = '#934f5d';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.font = `400 ${Math.min(bounds.width * 0.095, 66)}px "Cormorant Garamond", Georgia, serif`;
-  context.fillText('A date to celebrate', bounds.width / 2, bounds.height / 2 - 17);
-  context.font = '600 12px "DM Sans", sans-serif';
-  context.fillText('SCRATCH TO REVEAL', bounds.width / 2, bounds.height / 2 + 45);
+  context.font = `400 ${Math.min(bounds.width * 0.095, 39)}px "Cormorant Garamond", Georgia, serif`;
+  context.fillText('A date to celebrate', centerX, centerY - 13);
+  context.font = '600 10px "DM Sans", sans-serif';
+  context.fillText('SWIPE TO REVEAL', centerX, centerY + 24);
 }
 
 function reveal() {
@@ -71,10 +83,18 @@ function scratch(event) {
   if (strokes % 12 === 0) {
     const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
     let cleared = 0;
-    for (let index = 3; index < pixels.length; index += 40) {
-      if (pixels[index] < 60) cleared++;
+    let cakeCenterPixels = 0;
+    const middleX = canvas.width / 2;
+    const middleY = canvas.height / 2;
+    const radiusSquared = Math.min(middleX, middleY) ** 2;
+    for (let pixel = 0; pixel < canvas.width * canvas.height; pixel += 10) {
+      const x = pixel % canvas.width;
+      const y = Math.floor(pixel / canvas.width);
+      if ((x - middleX) ** 2 + (y - middleY) ** 2 > radiusSquared) continue;
+      cakeCenterPixels++;
+      if (pixels[pixel * 4 + 3] < 60) cleared++;
     }
-    if (cleared / (pixels.length / 40) > .34) reveal();
+    if (cakeCenterPixels && cleared / cakeCenterPixels > .3) reveal();
   }
 }
 

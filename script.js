@@ -184,15 +184,11 @@ const stirProgress = document.getElementById('stirProgress');
 const openingProgress = document.getElementById('openingProgress');
 const openingSkip = document.getElementById('openingSkip');
 const replayOpening = document.getElementById('replayOpening');
-const songPanel = document.getElementById('songPanel');
-const songStatus = document.getElementById('songStatus');
-const songClose = document.getElementById('songClose');
+const openingMusic = document.getElementById('openingMusic');
 const musicToggles = document.querySelectorAll('[data-music-toggle]');
 const pageRegions = document.querySelectorAll('.skip-link, .site-header, main, .site-footer');
 let musicEnabled = true;
-let songPlayer = null;
-let songPlayerReady = false;
-let playWhenReady = false;
+let musicReady = false;
 let stirring = false;
 let lastStirAngle = null;
 let totalStir = 0;
@@ -206,52 +202,30 @@ function updateMusicToggles() {
   }
 }
 
-function showSongPanel() {
-  if (!musicEnabled) return;
-  songPanel.hidden = false;
-  playWhenReady = true;
-  if (songPlayerReady) songPlayer.playVideo();
-}
-
-function closeSongPanel() {
-  musicEnabled = false;
-  playWhenReady = false;
-  if (songPlayerReady) songPlayer.pauseVideo();
-  songPanel.hidden = true;
-  updateMusicToggles();
-}
-
-window.onYouTubeIframeAPIReady = () => {
-  songPlayer = new YT.Player('songPlayer', {
-    width: 240,
-    height: 200,
-    videoId: 'TVbI55pDdaI',
-    playerVars: { playsinline: 1, controls: 1, rel: 0, origin: window.location.origin },
-    events: {
-      onReady: () => {
-        songPlayerReady = true;
-        if (playWhenReady && !songPanel.hidden) songPlayer.playVideo();
-      },
-      onAutoplayBlocked: () => { songStatus.textContent = 'Tap play in the video to hear the song.'; },
-      onError: () => { songStatus.textContent = 'Open the song on YouTube below.'; }
-    }
+function playOpeningMusic() {
+  if (!musicReady || !musicEnabled || !openingMusic.paused) return;
+  openingMusic.volume = .42;
+  openingMusic.play().catch(() => {
+    musicEnabled = false;
+    updateMusicToggles();
   });
-};
-const youtubeApi = document.createElement('script');
-youtubeApi.src = 'https://www.youtube.com/iframe_api';
-youtubeApi.async = true;
-youtubeApi.addEventListener('error', () => { songStatus.textContent = 'Open the song on YouTube below.'; });
-document.head.append(youtubeApi);
+}
+
+fetch('tu-hain-toh.mp3', { method: 'HEAD' }).then(response => {
+  if (!response.ok) return;
+  openingMusic.src = 'tu-hain-toh.mp3';
+  openingMusic.preload = 'auto';
+  musicReady = true;
+  for (const button of musicToggles) button.hidden = false;
+  openingMusic.load();
+}).catch(() => {});
 
 for (const button of musicToggles) button.addEventListener('click', () => {
-  if (musicEnabled) closeSongPanel();
-  else {
-    musicEnabled = true;
-    updateMusicToggles();
-    showSongPanel();
-  }
+  musicEnabled = !musicEnabled;
+  updateMusicToggles();
+  if (musicEnabled) playOpeningMusic();
+  else openingMusic.pause();
 });
-songClose.addEventListener('click', closeSongPanel);
 
 function setPageInert(value) {
   for (const region of pageRegions) region.inert = value;
@@ -273,7 +247,7 @@ function updateStir() {
 
 function openInvitation() {
   if (gateOpening || !document.body.classList.contains('has-opening')) return;
-  showSongPanel();
+  playOpeningMusic();
   gateOpening = true;
   openingProgress.textContent = 'Welcome to Smriti’s day';
   openingGate.classList.add('is-opening');
@@ -289,6 +263,7 @@ function openInvitation() {
 
 stirHit.addEventListener('pointerdown', event => {
   if (gateOpening) return;
+  playOpeningMusic();
   stirring = true;
   lastStirAngle = stirAngle(event);
   stirHit.setPointerCapture(event.pointerId);
@@ -315,6 +290,7 @@ stirHit.addEventListener('click', event => {
 stirHit.addEventListener('keydown', event => {
   if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
   event.preventDefault();
+  playOpeningMusic();
   const turn = event.key === 'ArrowRight' ? 45 : -45;
   visualStir += turn;
   totalStir += Math.abs(turn);

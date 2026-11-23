@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f1ec">
+  <meta name="description" content="Join Sourav and Sromona to celebrate Smriti Biswas's Annaprashan on 26 December 2026 in Kolkata.">
+  <title>Smriti's Annaprashan · 26 December 2026</title>
+  <link rel="icon" href="lotus.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="has-opening">
+  <a class="skip-link" href="#invitation">Skip to invitation</a>
+  <div class="opening-gate" id="openingGate" role="dialog" aria-modal="true" aria-labelledby="openingTitle">
+    <div class="opening-gate-inner">
+      <img class="opening-lotus" src="lotus.svg" alt="" aria-hidden="true">
+      <p class="opening-bengali" lang="bn">মুখে ভাত · অন্নপ্রাশন</p>
+      <h2 id="openingTitle">A little stir.<br><em>A lovely beginning.</em></h2>
+      <p class="opening-copy">Stir the kheer in a circle to open Smriti’s invitation.</p>
+      <button class="music-toggle opening-music-toggle" type="button" data-music-toggle aria-pressed="true"><span class="music-icon" aria-hidden="true">♫</span><span class="music-label">Music on</span></button>
+      <div class="stir-scene" id="stirScene">
+        <svg class="stir-plate" viewBox="0 0 320 320" fill="none" aria-hidden="true">
+          <circle cx="160" cy="160" r="143" fill="#c69b5e"/>
+          <circle cx="160" cy="160" r="134" stroke="#f4d6a1" stroke-width="3"/>
+          <circle cx="160" cy="160" r="121" stroke="#8d613e" stroke-opacity=".55" stroke-width="2"/>
+          <circle cx="160" cy="160" r="112" fill="#ab7a43"/>
+          <circle cx="160" cy="160" r="99" fill="#f1e9d8"/>
+          <circle cx="160" cy="160" r="88" fill="#f9f2e6"/>
+          <g class="kheer-swirl" fill="#d6ba90"><ellipse cx="134" cy="127" rx="8" ry="3" transform="rotate(-28 134 127)"/><ellipse cx="198" cy="141" rx="7" ry="3" transform="rotate(22 198 141)"/><ellipse cx="178" cy="197" rx="7" ry="3" transform="rotate(-18 178 197)"/><ellipse cx="115" cy="181" rx="8" ry="3" transform="rotate(31 115 181)"/><ellipse cx="165" cy="107" rx="7" ry="3" transform="rotate(58 165 107)"/></g>
+          <circle class="stir-track" cx="160" cy="160" r="153" pathLength="100"/>
+          <circle class="stir-progress" id="stirProgress" cx="160" cy="160" r="153" pathLength="100"/>
+        </svg>
+        <svg class="stir-spoon" viewBox="0 0 320 320" fill="none" aria-hidden="true"><path d="M160 160 239 82" stroke="#bd9977" stroke-width="14" stroke-linecap="round"/><path d="M160 160 239 82" stroke="#f6e8cf" stroke-width="7" stroke-linecap="round"/><ellipse cx="155" cy="165" rx="20" ry="13" transform="rotate(-44 155 165)" fill="#e8d3ae" stroke="#a98363" stroke-width="2"/></svg>
+        <button class="stir-hit" id="stirHit" type="button" aria-label="Stir the kheer in a circle. Press Enter to open without stirring."></button>
+      </div>
+      <div class="opening-progress" id="openingProgress" role="progressbar" aria-label="Stirring progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">Stir once around to open</div>
+      <button class="opening-skip" id="openingSkip" type="button">Open invitation instead <span aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+  <aside class="song-panel" id="songPanel" aria-label="Tu Hain Toh music player" hidden>
+    <div class="song-panel-heading"><span>Now playing · Tu Hain Toh</span><button id="songClose" type="button" aria-label="Close music player">×</button></div>
+    <div id="songPlayer" class="song-player"></div>
+    <p id="songStatus" class="song-status" aria-live="polite">Sony Music India · Official video</p>
+    <a href="https://youtu.be/TVbI55pDdaI" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+  </aside>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Smriti's invitation, back to top">S<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#invitation">Invitation</a>
+      <a href="#the-day">The day</a>
+      <a href="#venue">Venue</a>
+    </nav>
+    <div class="header-right"><span class="header-date">26 December 2026</span><button class="music-toggle header-music-toggle" type="button" data-music-toggle aria-pressed="true"><span class="music-icon" aria-hidden="true">♫</span><span class="music-label">Music on</span></button></div>
+  </header>
+
+  <main id="top">
+    <div class="hero-scroll-stage" id="heroStage">
+    <section class="hero" id="invitation" aria-labelledby="hero-title">
+      <div class="hero-leaves" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="hero-copy">
+        <div class="lotus" aria-hidden="true">
+          <svg viewBox="0 0 90 66" fill="none"><path d="M45 49C32 40 30 24 45 6c15 18 13 34 0 43Z"/><path d="M43 50C24 50 16 36 19 17c19 8 28 20 24 33ZM47 50c19 0 27-14 24-33-19 8-28 20-24 33Z"/><path d="M39 51C24 58 11 49 6 34c17-2 29 3 33 17Zm12 0c15 7 28-2 33-17-17-2-29 3-33 17Z"/><path d="M19 55c15 4 37 4 52 0"/></svg>
+        </div>
+        <p class="hero-prelude" lang="bn">মুখে ভাত · অন্নপ্রাশন</p>
+        <h1 id="hero-title" tabindex="-1">A first taste.<br><em>Endless blessings.</em></h1>
+        <p class="hero-intro">With full hearts, we invite you to celebrate the Annaprashan of our daughter</p>
+        <p class="hero-name">Smriti <span>Biswas</span></p>
+        <p class="hero-family">Sourav Biswas &amp; Sromona Biswas</p>
+        <div class="hero-actions">
+          <a class="text-link" href="#the-day">Discover the day <span aria-hidden="true">↗</span></a>
+          <span>Saturday · 26 December 2026</span>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Illustration of a smiling baby in a pink sari, from the family's invitation card">
+        <div class="arch-outline" aria-hidden="true"></div>
+        <div class="baby-crop" aria-hidden="true"></div>
+        <div class="art-caption">Six months of Smriti</div>
+      </div>
+    </section>
+    </div>
+
+    <section class="scratch-section" id="the-day" aria-labelledby="day-title">
+      <div class="section-heading">
+        <img class="section-flower" src="lotus.svg" alt="" aria-hidden="true">
+        <h2 id="day-title">A day to remember.</h2>
+        <p>One little spoon of rice. A room full of love. Give the date a playful reveal with a swipe.</p>
+      </div>
+      <div class="scratch-layout">
+        <div class="scratch-card" id="scratchCard">
+          <div class="scratch-reveal" aria-live="polite">
+            <span class="reveal-month">December</span>
+            <strong>26</strong>
+            <span class="reveal-year">Saturday · 2026</span>
+          </div>
+          <div class="scratch-petals" aria-hidden="true"></div>
+          <canvas id="scratchCanvas" aria-label="Scratch to reveal the celebration date"></canvas>
+        </div>
+        <div class="scratch-instruction">
+          <p>Swipe or drag across the blush panel to reveal the date.</p>
+          <button id="revealButton" class="quiet-button" type="button">Reveal the date <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="note-section" aria-labelledby="note-title">
+      <div class="note-side">
+        <span lang="bn">অন্নপ্রাশন</span>
+        <button class="blessing-note" id="blessingButton" type="button" aria-controls="blessingText" aria-label="Open a blessing for Smriti">
+          <span class="blessing-card" aria-hidden="true">
+            <span class="blessing-card-rule"></span>
+            <span class="blessing-card-eyebrow">A little wish for</span>
+            <strong>Smriti</strong>
+            <span class="blessing-card-flower"><img src="lotus.svg" alt=""></span>
+            <span class="blessing-card-date">26 · 12 · 2026</span>
+            <span class="blessing-card-seal">S</span>
+          </span>
+          <span class="blessing-prompt">Open a blessing <span aria-hidden="true">↗</span></span>
+        </button>
+        <div class="falling-leaves" id="fallingLeaves" aria-hidden="true"></div>
+        <blockquote class="blessing-text" id="blessingText" aria-live="polite">A little wish is waiting inside.</blockquote>
+      </div>
+      <div class="note-copy">
+        <h2 id="note-title">A sweet<br>beginning.</h2>
+        <p>At six months old, Smriti is ready for her Annaprashan — her first taste of rice. Please share this special moment with us.</p>
+        <p class="signature">With love,<br><span>Sourav &amp; Sromona</span></p>
+      </div>
+    </section>
+
+    <section class="venue-section" id="venue" aria-labelledby="venue-title">
+      <div class="venue-top">
+        <h2 id="venue-title">Come celebrate<br><em>with us.</em></h2>
+        <p>Saturday, 26 December 2026<br>Parish Hall, St. Paul’s Cathedral</p>
+      </div>
+      <div class="venue-bottom">
+        <div>
+          <p class="venue-label">The venue</p>
+          <address>Parish Hall, St. Paul’s Cathedral<br>Rabindra Sadan, 1A Cathedral Road<br>Maidan, New Market Area<br>Kolkata, West Bengal 700071</address>
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Parish%20Hall%2C%20St.%20Pauls%20Cathedral%2C%201A%20Cathedral%20Road%2C%20Kolkata%20700071" target="_blank" rel="noopener noreferrer">Open directions <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img class="footer-lotus" src="lotus.svg" alt="" aria-hidden="true">
+    <p>We look forward to sharing this moment with you.</p>
+    <strong>Smriti</strong>
+    <span>26 · 12 · 2026</span>
+    <button class="replay-opening" id="replayOpening" type="button">Stir the kheer again <span aria-hidden="true">↗</span></button>
+  </footer>
+  <noscript><style>body.has-opening{overflow:auto}.opening-gate{display:none!important}</style></noscript>
+</body>
+</html>

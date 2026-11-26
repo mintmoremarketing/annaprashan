@@ -107,3 +107,5 @@ body.has-opening .opening-gate.is-opening{opacity:0;transform:translateY(-18px);
 .scratch-card canvas{inset:21%;z-index:3;width:58%;height:58%;border-radius:50%;box-shadow:0 2px 12px rgba(115,76,65,.1)}
 .scratch-petals{z-index:4}
 @media(max-width:760px){.scratch-card{aspect-ratio:1}.scratch-reveal{inset:17%}.scratch-reveal strong{font-size:clamp(5.6rem,20vw,8rem)}.scratch-card canvas{inset:19%;width:62%;height:62%}}
+.scratch-instruction{justify-content:flex-end}
+.signature small{font-size:.78em}

@@ -108,4 +108,10 @@ body.has-opening .opening-gate.is-opening{opacity:0;transform:translateY(-18px);
 .scratch-petals{z-index:4}
 @media(max-width:760px){.scratch-card{aspect-ratio:1}.scratch-reveal{inset:17%}.scratch-reveal strong{font-size:clamp(5.6rem,20vw,8rem)}.scratch-card canvas{inset:19%;width:62%;height:62%}}
 .scratch-instruction{justify-content:flex-end}
-.signature small{font-size:.78em}
+.family-role,.family-name,.signature-role,.signature-name{display:block}
+.family-role,.signature-role{font-family:"DM Sans",sans-serif;font-size:.72rem;line-height:1.4;font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.family-role{margin-top:13px}
+.family-name{font-family:"Cormorant Garamond",serif;font-size:1.75rem;line-height:1.1;font-style:italic;color:var(--rose-dark)}
+.signature-role{margin-top:13px}
+.signature .signature-name{font-size:2.15rem;line-height:1.15}
+.family-parents{display:block;font-family:"Cormorant Garamond",serif;font-size:1.75rem;line-height:1.1;font-style:italic;color:var(--rose-dark)}
